@@ -55,20 +55,18 @@ fun AuthScreen() {
                 text = "Social Login",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Blue,
                 textAlign = TextAlign.Center
             )
             Spacer(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(40.dp)
+                    .height(30.dp)
             )
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
                 text = "Login with one of your social network accounts",
                 fontSize = 18.sp,
-                color = Color.Blue,
                 textAlign = TextAlign.Center
             )
             Spacer(

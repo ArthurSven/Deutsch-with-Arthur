@@ -49,19 +49,6 @@ data class BottomNavigation(
 fun NavigationScreen() {
     val navController = rememberNavController()
 
-    // Define your routes in the NavHost
-    NavHost(navController = navController, startDestination = "home_screen") {
-        composable("home_screen") {
-            HomeScreen()
-        }
-        composable("auth_screen") {
-            AuthScreen()
-        }
-        composable("translator_screen") {
-            TranslatorScreen()
-        }
-    }
-
     val items = listOf(
         BottomNavigation(
             title = "Home",
