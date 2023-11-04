@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -34,20 +35,19 @@ fun AuthScreen() {
     Surface(
         modifier = Modifier
             .background(color = Color.White)
-            .padding(30.dp)
     ) {
         val facebookBlue = Color(0xFF4267B2)
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(all = 30.dp)
+                .padding(all = 10.dp)
                 .background(color = Color.White)
         ) {
 
             Spacer(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(80.dp)
+                    .height(50.dp)
             )
             Text(
                 modifier = Modifier
@@ -61,7 +61,7 @@ fun AuthScreen() {
             Spacer(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(10.dp)
+                    .height(40.dp)
             )
             Text(
                 modifier = Modifier
@@ -95,17 +95,18 @@ fun AuthScreen() {
                 color = Color.LightGray,
                 fontSize = 30.sp
             )
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(10.dp)
+            )
             SocialMediaSignupButton(
                 onClick = { null },
                 color = Color.Red,
                 text = "Sign in with Google",
                 iconResId = R.drawable.googs
             )
-            Spacer(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(10.dp)
-            )
+
 
         }
     }
@@ -120,6 +121,7 @@ fun SocialMediaSignupButton(
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .height(50.dp)
             .background(color = Color.White)
             .border(1.dp, color, shape = RoundedCornerShape(4.dp))
             .clickable(onClick = onClick)
@@ -131,8 +133,10 @@ fun SocialMediaSignupButton(
             Row(
                 modifier = Modifier
                     .padding(10.dp)
-                    .background(color = Color.White)
+                    .background(color = Color.White),
+                horizontalArrangement = Arrangement.Center
             ) {
+                Spacer(modifier = Modifier.width(40.dp))
                 Image(
                     painter = painterResource(id = iconResId),
                     contentDescription = null, // Provide a meaningful description if needed
@@ -144,7 +148,7 @@ fun SocialMediaSignupButton(
                     color = color,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Normal,
-                    fontSize = 20.sp,
+                    fontSize = 18.sp,
                     modifier = Modifier
                         .fillMaxWidth()
                 )
