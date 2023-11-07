@@ -141,10 +141,10 @@ MenuItem(
                         val clientNavController = rememberNavController()
                     NavHost(navController = clientNavController, startDestination = "clienthome_screen") {
                         composable(route = "clienthome_screen") {
-
+                            ClientHomeScreen()
                         }
                         composable(route = "schedule_screen") {
-
+                            ScheduleScreen()
                         }
                         composable(route = "logout") {
 
