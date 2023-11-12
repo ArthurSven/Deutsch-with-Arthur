@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import com.devapps.deutschmitarthur.R
+import com.devapps.deutschmitarthur.data.model.UserData
 
 data class CardItem(
     val cardIcon: Int,
@@ -204,5 +205,4 @@ title: String
 @Composable
 @Preview
 fun PreviewClientHome() {
-    ClientHomeScreen()
 }

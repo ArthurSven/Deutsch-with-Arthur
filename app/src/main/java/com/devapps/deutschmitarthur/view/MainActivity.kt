@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.view.animation.OvershootInterpolator
+import android.widget.Toast
 import android.window.SplashScreen
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -39,6 +40,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -47,6 +49,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -54,16 +57,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ReportFragment.Companion.reportFragment
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.devapps.deutschmitarthur.R
+import com.devapps.deutschmitarthur.data.model.GoogleAuthUiClient
 import com.devapps.deutschmitarthur.ui.theme.DeutschMitArthurTheme
+import com.devapps.deutschmitarthur.view.Screens.Client.DrawerLayout
 import com.devapps.deutschmitarthur.view.Screens.HomeScreen
-import com.devapps.deutschmitarthur.view.Screens.NavigationScreen
-import com.devapps.deutschmitarthur.view.Screens.TranslatorScreen
+import com.devapps.deutschmitarthur.viewmodel.GoogleSignInViewModel
+import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class MainActivity : ComponentActivity() {
@@ -82,14 +90,44 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun Navigation() {
+        val context = LocalContext.current.applicationContext
+
+        val coroutineScope = rememberCoroutineScope()
+        val viewModel = viewModel<GoogleSignInViewModel>()
+        val state by viewModel.state.collectAsStateWithLifecycle()
+
+        val googleAuthUiClient by lazy {
+            GoogleAuthUiClient(
+                context = context,
+                oneTapClient = Identity.getSignInClient(context)
+            )
+        }
+
         val navController = rememberNavController()
         NavHost(navController = navController, startDestination = "splash_screen") {
-            composable("splash_screen") {
+            composable(route = "splash_screen") {
                 SplashScreen(navController)
             }
 
-            composable("nav_screen") {
-                NavigationScreen()
+            composable(route = "home_screen") {
+                HomeScreen()
+            }
+
+            composable(route = "client_home") {
+                DrawerLayout(
+                    userData = googleAuthUiClient.getSignedInUser(),
+                    onSignOut = {
+                        coroutineScope.launch {
+                            googleAuthUiClient.signOut()
+                            Toast.makeText(
+                                context,
+                                "Signed out",
+                                Toast.LENGTH_LONG
+                            ).show()
+
+                            navController.popBackStack()
+                        }
+                    })
             }
         }
 
@@ -112,7 +150,7 @@ class MainActivity : ComponentActivity() {
                 )
             )
             delay(3000)
-            navController.navigate("nav_screen")
+            navController.navigate("home_screen")
         }
         Box(
             modifier = Modifier

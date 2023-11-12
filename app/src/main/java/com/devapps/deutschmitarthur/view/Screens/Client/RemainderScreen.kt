@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ScheduleScreen() {
+fun RemainderScreen() {
 Surface(
     modifier = Modifier
         .background(Color.White)

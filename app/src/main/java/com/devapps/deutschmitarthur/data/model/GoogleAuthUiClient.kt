@@ -20,16 +20,14 @@ class GoogleAuthUiClient(
     private val auth = Firebase.auth
 
     suspend fun signIn() : IntentSender? {
-       val result =  try {
-            oneTapClient.beginSignIn(
-                buildSignInRequest()
-            ).await()
+        return try {
+            val result = oneTapClient.beginSignIn(buildSignInRequest()).await()
+            result?.pendingIntent?.intentSender
         } catch (e: Exception) {
             e.printStackTrace()
-            if(e is CancellationException) throw e
+            if (e is CancellationException) throw e
             null
         }
-        return result?.pendingIntent?.intentSender
     }
 
     suspend fun signInWithIntent(intent: Intent): SignInResult {
