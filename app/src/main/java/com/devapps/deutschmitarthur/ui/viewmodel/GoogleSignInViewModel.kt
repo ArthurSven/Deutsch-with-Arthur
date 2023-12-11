@@ -1,4 +1,4 @@
-package com.devapps.deutschmitarthur.viewmodel
+package com.devapps.deutschmitarthur.ui.viewmodel
 
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.LiveData

@@ -1,4 +1,4 @@
-package com.devapps.deutschmitarthur.view.Screens.Client
+package com.devapps.deutschmitarthur.ui.Screens.Client
 
 import android.graphics.Bitmap
 import androidx.compose.foundation.background
@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -59,8 +60,8 @@ import coil.request.ImageRequest
 import coil.request.ImageResult
 import com.devapps.deutschmitarthur.data.model.GoogleAuthUiClient
 import com.devapps.deutschmitarthur.data.model.UserData
-import com.devapps.deutschmitarthur.view.Screens.HomeScreen
-import com.devapps.deutschmitarthur.viewmodel.GoogleSignInViewModel
+import com.devapps.deutschmitarthur.ui.Screens.HomeScreen
+import com.devapps.deutschmitarthur.ui.viewmodel.GoogleSignInViewModel
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
 
@@ -103,7 +104,10 @@ fun DrawerLayout(
         }
         ModalNavigationDrawer(
             drawerContent = {
-                ModalDrawerSheet {
+                ModalDrawerSheet(
+                    modifier = Modifier
+                        .requiredWidth(300.dp)
+                ) {
                         DrawerHeader(userData)
                         DrawerBody(clientNavController)
                 }

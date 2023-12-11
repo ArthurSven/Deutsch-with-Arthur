@@ -1,4 +1,4 @@
-package com.devapps.deutschmitarthur.view
+package com.devapps.deutschmitarthur.ui
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.Icon
@@ -66,14 +66,15 @@ import androidx.navigation.compose.rememberNavController
 import com.devapps.deutschmitarthur.R
 import com.devapps.deutschmitarthur.data.model.GoogleAuthUiClient
 import com.devapps.deutschmitarthur.ui.theme.DeutschMitArthurTheme
-import com.devapps.deutschmitarthur.view.Screens.Client.DrawerLayout
-import com.devapps.deutschmitarthur.view.Screens.HomeScreen
-import com.devapps.deutschmitarthur.viewmodel.GoogleSignInViewModel
+import com.devapps.deutschmitarthur.ui.Screens.Client.DrawerLayout
+import com.devapps.deutschmitarthur.ui.Screens.HomeScreen
+import com.devapps.deutschmitarthur.ui.viewmodel.GoogleSignInViewModel
 import com.google.android.gms.auth.api.identity.Identity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

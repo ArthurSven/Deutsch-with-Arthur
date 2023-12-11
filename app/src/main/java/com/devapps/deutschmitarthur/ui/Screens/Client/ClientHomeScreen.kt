@@ -1,4 +1,4 @@
-package com.devapps.deutschmitarthur.view.Screens.Client
+package com.devapps.deutschmitarthur.ui.Screens.Client
 
 import android.icu.util.Calendar
 import androidx.compose.foundation.Image
@@ -35,6 +35,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.devapps.deutschmitarthur.R
 import com.devapps.deutschmitarthur.data.model.UserData
@@ -120,7 +122,6 @@ fun greetUser() : String {
 
 @Composable
 fun CardGrid() {
-    val navController = rememberNavController()
     val items = listOf(
         CardItem(
             cardIcon = R.drawable.grammar,
@@ -140,7 +141,7 @@ fun CardGrid() {
         CardItem(
             cardIcon = R.drawable.trivia,
             cardTitle = "Trivia",
-            cardRoute = "grammar_screen"
+            cardRoute = "trivia_screen"
         ),
     )
     var selectedItemIndex by rememberSaveable {
@@ -155,7 +156,7 @@ fun CardGrid() {
                LazyCard(
                    selected = selectedItemIndex == i,
                    onClick = {
-                       navController.navigate(cardItem.cardRoute)
+                       //navController.navigate(cardItem.cardRoute)
                    },
                    icon = cardItem.cardIcon,
                    title = cardItem.cardTitle)

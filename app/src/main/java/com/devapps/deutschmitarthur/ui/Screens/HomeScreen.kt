@@ -1,4 +1,4 @@
-package com.devapps.deutschmitarthur.view.Screens
+package com.devapps.deutschmitarthur.ui.Screens
 
 import android.app.Activity.RESULT_OK
 import android.util.Log
@@ -48,8 +48,8 @@ import androidx.navigation.compose.rememberNavController
 import com.devapps.deutschmitarthur.R
 import com.devapps.deutschmitarthur.data.model.GoogleAuthUiClient
 import com.devapps.deutschmitarthur.data.model.SignInState
-import com.devapps.deutschmitarthur.view.Screens.Client.DrawerLayout
-import com.devapps.deutschmitarthur.viewmodel.GoogleSignInViewModel
+import com.devapps.deutschmitarthur.ui.Screens.Client.DrawerLayout
+import com.devapps.deutschmitarthur.ui.viewmodel.GoogleSignInViewModel
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.common.api.ApiException
 import kotlinx.coroutines.launch
